@@ -1,0 +1,4 @@
+<data>
+  <a xmlns:py="http://codespeak.net/lxml/objectify/pytype" py:pytype="str">AAAxxx</a>
+  <b xmlns:py="http://codespeak.net/lxml/objectify/pytype" py:pytype="str">BBByyy</b>
+</data>

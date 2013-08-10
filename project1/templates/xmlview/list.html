@@ -1,0 +1,9 @@
+{% if file_list %}
+    <ul>
+    {% for file in file_list %}
+        <li><a href="/xmlview/{{ file }}">{{ file }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No config files available.</p>
+{% endif %}

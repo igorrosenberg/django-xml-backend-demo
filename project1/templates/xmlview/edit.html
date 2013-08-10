@@ -1,0 +1,23 @@
+<h1>Edition</h1>
+<!--
+    <ul>
+        <li>a: (input value="{{ file_data.a }}" name="a") </li>
+        <li>b: (input value="{{ file_data.b }}" name="b") </li>
+    </ul>
+-->
+
+
+<form action="/xmlview/{{ file_name }}/save" method="post">
+{% csrf_token %}
+    <ul>
+        <li>
+          <label for="a">Champ a:</label> 
+          <input type="text" id="a" name="a" value="{{ file_data.a }}"/> 
+        </li>
+        <li>
+          <label for="b">Champ b:</label> 
+          <input type="text" id="b" name="b" value="{{ file_data.b }}"/> 
+        </li>
+    </ul>
+   <input type="submit" value="Save" />
+</form>
