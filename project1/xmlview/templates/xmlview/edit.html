@@ -1,0 +1,28 @@
+<h1>Edition du fichier {{ file_name }}</h1>
+
+<form action="/xmlview/{{ file_name }}/save" method="post">
+{% csrf_token %}
+    <ul>
+        <li>
+          <label for="a">Champ a:</label> 
+          <input type="text" id="a" name="a" 
+                  value="{{ file_data.a }}"/> 
+        </li>
+        <li>
+          <label for="a_prop">Attribut a[prop]:</label> 
+          <input type="text" id="a_prop" name="a_prop" 
+                  value="{{ file_data.a.attrib.prop }}"/> 
+        </li>
+        <li>
+          <label for="a.a1">Champ a.a1:</label> 
+          <input type="text" id="a.a1" name="a.a1" 
+                  value="{{ file_data.a.a1 }}"/> 
+        </li>
+        <li>
+          <label for="b">Champ b:</label> 
+          <input type="text" id="b" name="b" 
+                  value="{{ file_data.b }}"/> 
+        </li>
+    </ul>
+   <input type="submit" value="Save" />
+</form>

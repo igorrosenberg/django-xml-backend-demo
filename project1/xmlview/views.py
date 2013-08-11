@@ -3,11 +3,15 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-BASE_PATH = '/home/irosenberg/dev/project1/xmlview/data/'
-
 def list(request):
-    file_list = get_files(BASE_PATH)
+    file_list = get_files()
     return render_to_response('xmlview/list.html', { 'file_list': file_list, })
+
+def test(request):
+    file_data = get_file_data("1.xml")
+    #data = "Hello, world. "
+    data = file_data.a.attrib['prop']
+    return HttpResponse(data)
 
 def edit(request, xml_id):
     try:
@@ -15,7 +19,7 @@ def edit(request, xml_id):
        # return HttpResponse(file_data.a)
        return render_to_response(
             'xmlview/edit.html', 
-            { 'file_data': file_data, 'file_name': xml_id}, 
+            { 'file_data': file_data, 'file_name': xml_id }, 
             context_instance=RequestContext(request)
             )
     except IOError:
@@ -42,8 +46,11 @@ from os.path import isfile, join
 from lxml import objectify
 from lxml import etree
 
+BASE_PATH = 'xmlview/data/'
+
 # List files available
-def get_files(path):
+def get_files():
+    path = BASE_PATH
     return [ f for f in listdir(path) if isfile(join(path,f)) ]
 
 # Get XML data from a file as a dictionnary object (see lxml.objectify)
@@ -61,7 +68,10 @@ def get_file_data(xml_file_name):
 def save_file(xml_file_name, submitted_data) :
     file_data = get_file_data(xml_file_name)
     file_data.a = submitted_data['a']
+    file_data.a.a1 = submitted_data['a.a1']
+    file_data.a.set("prop", submitted_data['a_prop'])
     file_data.b = submitted_data['b']
+    objectify.deannotate(file_data, cleanup_namespaces=True)
     xmlString = etree.tostring(file_data, pretty_print=True)
     # file IO
     fo = open(BASE_PATH + xml_file_name, "w")
