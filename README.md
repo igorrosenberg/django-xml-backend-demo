@@ -17,7 +17,11 @@ To get started:
 On the OS, install 
 * python-django
 * python-lxml 
+* python-webtest (for tests, see http://codeinthehole.com/writing/prefer-webtest-to-djangos-test-client-for-functional-tests/)
 
 To get the webapp running:
-  python manage.py runserver
-  
+      python manage.py runserver
+
+To test the application
+      python manage.py test xmlview
+
