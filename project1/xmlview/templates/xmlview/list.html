@@ -1,9 +1,20 @@
-{% if file_list %}
-    <ul>
-    {% for file in file_list %}
-        <li><a href="/xmlview/{{ file }}">{{ file }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No config files available.</p>
-{% endif %}
+<h1>List</h1>
+
+<div class="file-list"> 
+   {% if file_list %}
+       <ul>
+       {% for file in file_list %}
+           <li>
+               <a href="/xmlview/edit/{{ file }}">{{ file }}</a>
+               <a href="/xmlview/delete/{{ file }}">DELETE</a>
+           </li>
+       {% endfor %}
+       </ul>
+   {% else %}
+       <p>No config files available.</p>
+   {% endif %}
+</div>
+
+<div class="bottom-buttons">
+   <a  href="/xmlview/create">New file</a>
+</div>
